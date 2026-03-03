@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Base element styles — applied automatically to all raw HTML elements.
+  Design token values live in tailwind.config.ts.
+  @apply pulls those tokens in here, so a bare <p> or <h1> is
+  correctly styled without needing any classes on it.
+*/
+@layer base {
+  body {
+    @apply font-sans text-base text-text-primary bg-surface-bg leading-normal;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-sans font-semibold leading-tight text-text-primary;
+  }
+
+  h1 { @apply text-3xl font-bold; }
+  h2 { @apply text-2xl; }
+  h3 { @apply text-xl; }
+  h4 { @apply text-lg; }
+  h5,
+  h6 { @apply text-base; }
+
+  p {
+    @apply text-base text-text-primary leading-relaxed;
+  }
+
+  a {
+    @apply text-brand-primary underline underline-offset-2;
+  }
+
+  a:hover {
+    @apply text-brand-secondary;
+  }
+
+  small {
+    @apply text-sm text-text-muted;
+  }
+
+  strong,
+  b {
+    @apply font-semibold;
+  }
+
+  code {
+    @apply font-mono bg-surface-card border border-surface-border rounded px-1;
+    font-size: 0.9em;
+  }
+
+  pre {
+    @apply font-mono text-sm bg-surface-card border border-surface-border rounded p-4 overflow-x-auto;
+  }
+}

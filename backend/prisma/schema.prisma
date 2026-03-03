@@ -1,0 +1,74 @@
+// Virtual Wards — Domain Schema
+// TODO [CHALLENGE: Data Engineering] - DE-01
+// This schema is defined but the API currently uses stub data in src/data/.
+// Your challenge: spin up a PostgreSQL database, run `prisma migrate dev`,
+// and replace the stub data with real Prisma queries.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Ward {
+  id        String    @id @default(cuid())
+  name      String
+  specialty String
+  capacity  Int
+  patients  Patient[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Patient {
+  id           String        @id @default(cuid())
+  name         String
+  nhsNumber    String        @unique
+  dateOfBirth  DateTime
+  status       PatientStatus @default(MONITORING)
+  admittedAt   DateTime      @default(now())
+  dischargedAt DateTime? // null = still admitted
+  ward         Ward          @relation(fields: [wardId], references: [id])
+  wardId       String
+  observations Observation[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  // TODO [CHALLENGE: Data Modelling] - Should discharged patients stay in this table?
+  // What are the implications for GDPR data retention in the NHS?
+}
+
+model Observation {
+  id         String          @id @default(cuid())
+  type       ObservationType
+  value      Float
+  unit       String
+  recordedAt DateTime        @default(now())
+  patient    Patient         @relation(fields: [patientId], references: [id])
+  patientId  String
+  recordedBy String? // clinician ID — not a FK yet, a challenge to add
+
+  // TODO [CHALLENGE: Data Engineering] - DE-02
+  // Observations are time-series. Consider what index strategy you'd use,
+  // and whether PostgreSQL alone is the right storage choice.
+
+  @@index([patientId, recordedAt])
+}
+
+enum PatientStatus {
+  ADMITTED
+  MONITORING
+  ESCALATED
+  DISCHARGED
+}
+
+enum ObservationType {
+  BLOOD_PRESSURE
+  HEART_RATE
+  OXYGEN_SATURATION
+  TEMPERATURE
+  RESPIRATORY_RATE
+}

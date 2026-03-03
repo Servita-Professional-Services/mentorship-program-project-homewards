@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    // Understands @apply, @layer, @tailwind directives and provides class autocomplete
+    "bradlc.vscode-tailwindcss",
+    // TypeScript and React support
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode"
+  ]
+}
