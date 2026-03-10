@@ -1,6 +1,6 @@
 # Project Virtual Wards
 
-Engineering mentorship skeleton for **HomeWard** — a digital workplace commissioned by the UK Health Service to enable clinicians to monitor and support patients at home with the same clinical confidence as an inpatient ward.
+Engineering mentorship skeleton for **HomeWard** — a digital platform commissioned by the UK Health Service to enable clinicians to monitor and support patients at home with the same clinical confidence as an inpatient ward.
 
 > **Read the brief first:** [`docs/brief.md`](./docs/brief.md)
 > The brief defines the programme requirements. Every challenge in this repo maps to one or more of them.
@@ -15,7 +15,7 @@ This codebase is intentionally incomplete. It runs out of the box, but has clear
 
 ```bash
 pnpm install
-pnpm dev        # starts frontend (port 5173) and API (port 3001) in parallel
+pnpm start      # starts frontend (port 5173) and API (port 3001) in parallel
 ```
 
 ---
@@ -32,8 +32,13 @@ terraform/
 data/
   seeds/        Sample patient data for database bootstrapping
 docs/
-  brief.md      Project HomeWard programme brief
-  challenges/   Challenge briefs mapped to brief requirements
+  brief.md               Project HomeWard programme brief
+  challenges/            Challenge briefs mapped to brief requirements
+    software-engineering.md
+    data-engineering.md
+    architecture.md
+    product.md
+    final-week.md        Scenario-based final week challenges
 ```
 
 ---
@@ -41,7 +46,7 @@ docs/
 ## Development
 
 ```bash
-pnpm dev                                          # frontend + API in parallel
+pnpm start                                        # frontend + API in parallel
 pnpm --filter '@health-wards/frontend' dev        # frontend only (port 5173)
 pnpm --filter '@health-wards/api' dev             # API only (port 3001)
 
@@ -67,12 +72,15 @@ GET /api/v1/patients/:id       single patient
 
 ## Challenges
 
+Weekly challenges are stream-specific. Final week tasks are scenario-based and require presenting to a mixed executive audience.
+
 | Stream | File | Key Brief Requirements |
 |---|---|---|
 | Software Engineering | [`docs/challenges/software-engineering.md`](./docs/challenges/software-engineering.md) | SE-1, SE-2, SE-3 |
 | Data Engineering | [`docs/challenges/data-engineering.md`](./docs/challenges/data-engineering.md) | AR-3, PR-3 |
 | Architecture | [`docs/challenges/architecture.md`](./docs/challenges/architecture.md) | AR-1, AR-2, AR-3 |
 | Product | [`docs/challenges/product.md`](./docs/challenges/product.md) | PR-1, PR-2, PR-3, O-1, O-2 |
+| **Final Week** | [`docs/challenges/final-week.md`](./docs/challenges/final-week.md) | All streams |
 
 Find all challenge entry points in the codebase:
 
@@ -99,6 +107,6 @@ pnpm --filter '@health-wards/api' db:studio
 
 ## Branding
 
-Update [`frontend/src/globals.css`](./frontend/src/globals.css) to change brand colours — all Tailwind utility classes read from CSS custom properties defined there.
+To change colours or fonts: edit [`frontend/tailwind.config.ts`](./frontend/tailwind.config.ts) — it is the single source of truth for all design tokens. Changes apply everywhere automatically.
 
 To swap the logo: replace [`frontend/src/assets/logo.svg`](./frontend/src/assets/logo.svg).

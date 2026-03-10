@@ -1,11 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 148 40" fill="none" role="img" aria-label="HomeWard">
-  <!-- Healthcare cross -->
-  <rect x="8" y="14" width="24" height="12" rx="2" fill="currentColor"/>
-  <rect x="14" y="8"  width="12" height="24" rx="2" fill="currentColor"/>
-  <!-- Wordmark -->
-  <text x="44" y="26"
-    font-family="Alexandria, Inter, system-ui, sans-serif"
-    font-size="15"
-    font-weight="600"
-    fill="currentColor">HomeWard</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 215 80" width="215" height="80">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Shrikhand');
+    </style>
+  </defs>
+  <text x="10" y="58" font-family="Shrikhand, serif" font-size="64" fill="rgb(240, 244, 245)" letter-spacing="6" stroke="#181818" stroke-width="1.5" paint-order="stroke fill">PHW</text>
+  <line x1="52" y1="70" x2="180" y2="70" stroke="rgb(209, 15, 63)" stroke-width="5" stroke-linecap="round"/>
 </svg>

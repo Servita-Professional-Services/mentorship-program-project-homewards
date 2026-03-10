@@ -4,10 +4,18 @@ import { useNavigate, useLocation } from 'react-router-dom';
 // Replace this stub with a real page.
 // See docs/challenges/software-engineering.md for requirements.
 
+function formatPathname(pathname: string): string {
+  return pathname
+    .split('/')
+    .filter(Boolean)
+    .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
+    .join(' › ');
+}
+
 export function NotImplemented() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const section = pathname.replace('/', '');
+  const section = formatPathname(pathname);
 
   return (
     <section className="bg-brand-primary min-h-[calc(100vh-72px)] flex items-center justify-center px-6">
