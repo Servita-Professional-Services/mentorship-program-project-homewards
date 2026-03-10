@@ -23,7 +23,7 @@ export function NotImplemented() {
         <div className="text-8xl font-bold text-white/10 leading-none select-none mb-6">🚧</div>
         <h1 className="text-4xl font-bold text-white capitalize">{section}</h1>
         <p className="mt-4 text-lg text-white/70 leading-relaxed">
-          This page hasn't been built yet — it's your challenge to implement it.
+          This page hasn&apos;t been built yet — it&apos;s your challenge to implement it.
         </p>
         <div
           className="mt-4 w-12 h-1 rounded-full mx-auto"
