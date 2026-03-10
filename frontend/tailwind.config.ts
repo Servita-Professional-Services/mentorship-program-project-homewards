@@ -23,25 +23,25 @@ const config: Config = {
       // ── Colours ────────────────────────────────────────────────
       colors: {
         brand: {
-          primary:   '#181818', // NHS Blue — update to rebrand
+          primary: '#181818', // NHS Blue — update to rebrand
           secondary: '#EBEBEB',
-          accent:    '#D10F3F', // NHS Teal
+          accent: '#D10F3F', // NHS Teal
         },
         status: {
           // WCAG AA contrast required — do not reduce when rebranding
-          escalated:  '#d5281b',
-          warning:    '#ffb81c',
-          stable:     '#007f3b',
+          escalated: '#d5281b',
+          warning: '#ffb81c',
+          stable: '#007f3b',
           discharged: '#768692',
         },
         surface: {
-          bg:     '#f0f4f5',
-          card:   '#ffffff',
+          bg: '#f0f4f5',
+          card: '#ffffff',
           border: '#d8dde0',
         },
         text: {
           primary: '#212b32',
-          muted:   '#4c6272',
+          muted: '#4c6272',
         },
       },
 

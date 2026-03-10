@@ -7,9 +7,9 @@ import type { PatientStatus } from '@health-wards/shared';
 //    (Consider users with colour vision deficiency)
 
 const STATUS_CONFIG: Record<PatientStatus, { label: string; color: string }> = {
-  ESCALATED:  { label: 'Escalated',  color: '#d5281b' },
+  ESCALATED: { label: 'Escalated', color: '#d5281b' },
   MONITORING: { label: 'Monitoring', color: '#005eb8' },
-  ADMITTED:   { label: 'Admitted',   color: '#007f3b' },
+  ADMITTED: { label: 'Admitted', color: '#007f3b' },
   DISCHARGED: { label: 'Discharged', color: '#768692' },
 };
 

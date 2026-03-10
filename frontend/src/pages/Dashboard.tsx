@@ -39,7 +39,16 @@ const tiles: TileProps[] = [
     accent: '#181818',
     href: '/wards',
     icon: (
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        width="30"
+        height="30"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
         <polyline points="9 22 9 12 15 12 15 22" />
       </svg>
@@ -51,7 +60,16 @@ const tiles: TileProps[] = [
     accent: '#007f3b',
     href: '/patients',
     icon: (
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        width="30"
+        height="30"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
         <circle cx="12" cy="7" r="4" />
       </svg>
@@ -63,7 +81,16 @@ const tiles: TileProps[] = [
     accent: '#b45309',
     href: '/observations',
     icon: (
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        width="30"
+        height="30"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
       </svg>
     ),
@@ -74,7 +101,16 @@ const tiles: TileProps[] = [
     accent: '#D10F3F',
     href: '/escalations',
     icon: (
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        width="30"
+        height="30"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
         <line x1="12" y1="9" x2="12" y2="13" />
         <line x1="12" y1="17" x2="12.01" y2="17" />
@@ -93,10 +129,13 @@ export function Dashboard() {
             Project HomeWards
           </h1>
           <p className="mt-6 text-lg sm:text-xl text-white/70 leading-relaxed">
-            A virtual ward management platform supporting remote monitoring, clinical
-            observations, and patient escalation across community care settings.
+            A virtual ward management platform supporting remote monitoring, clinical observations,
+            and patient escalation across community care settings.
           </p>
-          <div className="mt-8 w-16 h-1 rounded-full mx-auto" style={{ backgroundColor: '#D10F3F' }} />
+          <div
+            className="mt-8 w-16 h-1 rounded-full mx-auto"
+            style={{ backgroundColor: '#D10F3F' }}
+          />
         </div>
       </section>
 

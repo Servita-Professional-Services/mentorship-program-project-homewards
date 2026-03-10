@@ -2,8 +2,9 @@
 
 Engineering mentorship skeleton for **HomeWard** — a digital platform commissioned by the UK Health Service to enable clinicians to monitor and support patients at home with the same clinical confidence as an inpatient ward.
 
-> **Read the brief first:** [`docs/brief.md`](./docs/brief.md)
-> The brief defines the programme requirements. Every challenge in this repo maps to one or more of them.
+> **New to the programme?** Start with [`docs/programme.md`](./docs/programme.md) — the full overview, curriculum, and facilitation notes.
+>
+> **Read the brief:** [`docs/brief.md`](./docs/brief.md) — the client requirements every challenge maps to.
 
 This codebase is intentionally incomplete. It runs out of the box, but has clearly signposted gaps for software engineers, data engineers, architects, and product people to work through.
 
@@ -72,15 +73,35 @@ GET /api/v1/patients/:id       single patient
 
 ## Challenges
 
-Weekly challenges are stream-specific. Final week tasks are scenario-based and require presenting to a mixed executive audience.
+25 challenges across 4 streams plus a scenario-based final week. Full curriculum: [`docs/programme.md`](./docs/programme.md).
 
-| Stream | File | Key Brief Requirements |
-|---|---|---|
-| Software Engineering | [`docs/challenges/software-engineering.md`](./docs/challenges/software-engineering.md) | SE-1, SE-2, SE-3 |
-| Data Engineering | [`docs/challenges/data-engineering.md`](./docs/challenges/data-engineering.md) | AR-3, PR-3 |
-| Architecture | [`docs/challenges/architecture.md`](./docs/challenges/architecture.md) | AR-1, AR-2, AR-3 |
-| Product | [`docs/challenges/product.md`](./docs/challenges/product.md) | PR-1, PR-2, PR-3, O-1, O-2 |
-| **Final Week** | [`docs/challenges/final-week.md`](./docs/challenges/final-week.md) | All streams |
+| ID    | Challenge                                     | Stream               |
+| ----- | --------------------------------------------- | -------------------- |
+| SE-01 | Ward Dashboard Component                      | Software Engineering |
+| SE-02 | Type-Safe API Client                          | Software Engineering |
+| SE-03 | Patient Admission & NHS Number Validation     | Software Engineering |
+| SE-04 | Accessibility Audit & Remediation             | Software Engineering |
+| SE-05 | API Integration Tests                         | Software Engineering |
+| SE-06 | Error Boundary                                | Software Engineering |
+| SE-07 | Custom Data-Fetching Hooks                    | Software Engineering |
+| SE-08 | Server State with TanStack Query              | Software Engineering |
+| SE-09 | Rendering Performance                         | Software Engineering |
+| SE-10 | Global State Management                       | Software Engineering |
+| SE-11 | Ticket Analysis: Clinical Notes               | Software Engineering |
+| SE-12 | Clinical Risk Register                        | Software Engineering |
+| DE-01 | Connect the Database                          | Data Engineering     |
+| DE-02 | Observations Time-Series                      | Data Engineering     |
+| DE-03 | Ward Summary & Reporting Endpoint             | Data Engineering     |
+| DE-04 | Data Retention, Governance & GDPR             | Data Engineering     |
+| AR-01 | System Architecture Diagrams                  | Architecture         |
+| AR-02 | Real-Time Escalation Alerts                   | Architecture         |
+| AR-03 | Authentication, Authorisation & Audit Logging | Architecture         |
+| AR-04 | Infrastructure: Multi-Environment & Secrets   | Architecture         |
+| PR-01 | User Personas & Problem Statements            | Product              |
+| PR-02 | Backlog Prioritisation                        | Product              |
+| PR-03 | Feature Specification: Escalation             | Product              |
+| PR-04 | Stakeholder Engagement Plan                   | Product              |
+| FW-01 | Clinical Resilience Under Outage              | Final Week           |
 
 Find all challenge entry points in the codebase:
 

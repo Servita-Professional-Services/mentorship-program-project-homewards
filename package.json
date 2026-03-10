@@ -17,7 +17,12 @@
     "test": "pnpm --parallel --filter '@health-wards/frontend' --filter '@health-wards/api' test"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["@prisma/client", "@prisma/engines", "esbuild", "prisma"],
+    "onlyBuiltDependencies": [
+      "@prisma/client",
+      "@prisma/engines",
+      "esbuild",
+      "prisma"
+    ],
     "overrides": {
       "@storybook/test": "8.6.17"
     }

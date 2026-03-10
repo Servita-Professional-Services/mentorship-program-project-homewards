@@ -66,7 +66,6 @@ export function NavBar() {
     <header className="sticky top-0 z-50 bg-brand-primary shadow-md">
       <div className="max-w-7xl mx-auto px-8">
         <div className="flex items-center gap-10 h-[72px]">
-
           {/* Logo */}
           <Link to="/" aria-label="Go to home" className="flex-shrink-0 no-underline">
             <Logo width={148} className="text-white" />
@@ -112,14 +111,16 @@ export function NavBar() {
                   className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-white/75 hover:text-white hover:bg-white/10 no-underline transition-colors"
                 >
                   {item.urgent && (
-                    <span className="w-2 h-2 rounded-full bg-brand-accent flex-shrink-0" aria-label="Urgent" />
+                    <span
+                      className="w-2 h-2 rounded-full bg-brand-accent flex-shrink-0"
+                      aria-label="Urgent"
+                    />
                   )}
                   {item.label}
                 </Link>
-              )
+              ),
             )}
           </nav>
-
         </div>
       </div>
     </header>

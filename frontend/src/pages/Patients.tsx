@@ -81,7 +81,11 @@ export function Patients() {
           {escalatedCount > 0 && !loading && (
             <div
               className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold"
-              style={{ backgroundColor: '#d5281b22', color: '#d5281b', border: '1px solid #d5281b35' }}
+              style={{
+                backgroundColor: '#d5281b22',
+                color: '#d5281b',
+                border: '1px solid #d5281b35',
+              }}
             >
               <span className="w-2 h-2 rounded-full bg-current" />
               {escalatedCount} patient{escalatedCount !== 1 ? 's' : ''} require urgent review
@@ -91,16 +95,15 @@ export function Patients() {
       </div>
 
       <div className="max-w-7xl mx-auto px-8 py-8">
-
         {/* Loading */}
-        {loading && (
-          <div className="text-center py-24 text-text-muted">Loading patients…</div>
-        )}
+        {loading && <div className="text-center py-24 text-text-muted">Loading patients…</div>}
 
         {/* Error */}
         {error && (
           <div className="text-center py-24">
-            <p className="font-medium" style={{ color: '#d5281b' }}>{error}</p>
+            <p className="font-medium" style={{ color: '#d5281b' }}>
+              {error}
+            </p>
             <p className="mt-2 text-sm text-text-muted">
               Check that <code>pnpm start</code> is running
             </p>
@@ -110,19 +113,30 @@ export function Patients() {
         {/* Table */}
         {!loading && !error && (
           <div className="bg-surface-card rounded-2xl shadow-sm border border-surface-border overflow-hidden">
-
             {/* TODO [CHALLENGE: Software Engineering] - Add search + filter bar here */}
 
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-surface-border bg-surface-bg">
                   {/* TODO [CHALLENGE: Software Engineering] - Make headers clickable to sort */}
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-text-muted uppercase tracking-wider">Patient</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-text-muted uppercase tracking-wider">NHS Number</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-text-muted uppercase tracking-wider">Ward</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-text-muted uppercase tracking-wider">Status</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-text-muted uppercase tracking-wider">Admitted</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-text-muted uppercase tracking-wider">Age</th>
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-text-muted uppercase tracking-wider">
+                    Patient
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-text-muted uppercase tracking-wider">
+                    NHS Number
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-text-muted uppercase tracking-wider">
+                    Ward
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-text-muted uppercase tracking-wider">
+                    Status
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-text-muted uppercase tracking-wider">
+                    Admitted
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-text-muted uppercase tracking-wider">
+                    Age
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-surface-border">
@@ -154,7 +168,9 @@ export function Patients() {
                       <td className="px-6 py-4">
                         <StatusBadge status={patient.status} />
                       </td>
-                      <td className="px-6 py-4 text-text-muted">{daysSince(patient.admittedAt)}d</td>
+                      <td className="px-6 py-4 text-text-muted">
+                        {daysSince(patient.admittedAt)}d
+                      </td>
                       <td className="px-6 py-4 text-text-muted">{getAge(patient.dateOfBirth)}</td>
                     </tr>
                   );
@@ -163,7 +179,9 @@ export function Patients() {
             </table>
 
             <div className="px-6 py-3 border-t border-surface-border bg-surface-bg text-xs text-text-muted flex items-center justify-between">
-              <span>{patients.length} patient{patients.length !== 1 ? 's' : ''}</span>
+              <span>
+                {patients.length} patient{patients.length !== 1 ? 's' : ''}
+              </span>
               {/* TODO [CHALLENGE: Software Engineering] - Add pagination controls here */}
               <span className="italic opacity-60">Pagination not yet implemented</span>
             </div>

@@ -16,6 +16,7 @@ Final week tasks are scenario-based. There is no single correct answer. You will
 > The incident attracted national press coverage and triggered a CQC review.
 >
 > HomeWard executives are concerned:
+>
 > - Could this happen to us?
 > - Are our patients clinically safe during a platform outage?
 > - How exposed are we reputationally and with regulators?
@@ -29,12 +30,14 @@ You have been asked to present: **How HomeWard's architecture ensures clinical r
 
 **1. Failure mode analysis**
 Map the current HomeWard architecture and identify every single point of failure. For each:
+
 - What breaks if this component goes down?
 - Who is affected and how quickly?
 - Is there a current mitigation?
 
 **2. Clinical continuity plan**
 What happens to patients already on a virtual ward during a full platform outage? Specifically:
+
 - How are clinicians notified that monitoring has been interrupted?
 - What is the manual fallback for escalation?
 - How long can HomeWard safely operate in degraded mode before patient safety is compromised?
@@ -42,12 +45,14 @@ What happens to patients already on a virtual ward during a full platform outage
 
 **3. Architecture recommendations**
 Given the current system (see [`terraform/azure/`](../../terraform/azure/), [`backend/`](../../backend/), [`frontend/`](../../frontend/)), propose concrete architectural changes that would improve resilience:
+
 - Which Azure services would you introduce? (consider: availability zones, geo-redundancy, Service Bus for durable messaging, Redis for offline-capable caching)
 - How would you design the escalation alert system to survive a partial outage? (see also AR-02)
 - Where is the read replica for critical clinical data if the primary database is unavailable?
 
 **4. Regulatory and reputational framing**
 Your audience includes the Medical Director and a Board-level Non-Executive Director. Address:
+
 - What is HomeWard's current posture against [DSPT](https://www.dsptoolkit.nhs.uk/) requirements for availability and business continuity?
 - What would you tell the press if a similar incident happened tomorrow?
 - What would you change in the next 30 days, 90 days, and 12 months?
@@ -66,13 +71,13 @@ Your audience includes the Medical Director and a Board-level Non-Executive Dire
 
 ### Evaluation criteria
 
-| Criterion | What good looks like |
-|---|---|
-| Technical accuracy | Failure modes are realistic and grounded in the actual codebase and infrastructure |
+| Criterion          | What good looks like                                                                 |
+| ------------------ | ------------------------------------------------------------------------------------ |
+| Technical accuracy | Failure modes are realistic and grounded in the actual codebase and infrastructure   |
 | Clinical awareness | Understands that downtime is not just a service issue — it is a patient safety issue |
-| Communication | Executive audience can follow the argument without a technical background |
-| Prioritisation | Recommendations are sequenced by risk and feasibility, not just technical ambition |
-| Honesty | Acknowledges gaps in the current architecture rather than overstating resilience |
+| Communication      | Executive audience can follow the argument without a technical background            |
+| Prioritisation     | Recommendations are sequenced by risk and feasibility, not just technical ambition   |
+| Honesty            | Acknowledges gaps in the current architecture rather than overstating resilience     |
 
 ---
 
