@@ -30,6 +30,7 @@ This project runs entirely on your computer — no hosted services needed.
 ---
 
 ## 2. Clone the project
+
 cd into the folder you want the repository to live in.
 
 ```
@@ -94,12 +95,14 @@ docs/       → Challenges and programme info
 Restart your terminal.
 
 **Check everything is installed:**
+
 ```
 node -v
 pnpm -v
 ```
 
 **Reset and reinstall dependencies:**
+
 ```
 pnpm install
 ```
