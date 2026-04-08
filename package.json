@@ -8,6 +8,7 @@
     "pnpm": ">=9.0.0"
   },
   "scripts": {
+    "prepare": "husky",
     "start": "pnpm dev",
     "dev": "pnpm --parallel --filter '@health-wards/frontend' --filter '@health-wards/api' dev",
     "build": "pnpm --filter '@health-wards/shared' build && pnpm --parallel --filter '@health-wards/frontend' --filter '@health-wards/api' build",
@@ -35,6 +36,7 @@
     "eslint-plugin-react": "^7.34.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "^3.3.0",
+    "husky": "^9.0.0",
     "typescript": "^5.4.0"
   }
 }

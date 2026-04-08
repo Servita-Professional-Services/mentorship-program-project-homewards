@@ -1,20 +1,21 @@
 import type { PatientStatus } from '@health-wards/shared';
 
-// TODO [CHALLENGE: Component Design]
-// 1. Add a Storybook story showing all four states side by side
-// 2. Each status should meet WCAG AA contrast — verify with a contrast checker
-// 3. Should this badge also convey status via an icon, not just colour and text?
-//    (Consider users with colour vision deficiency)
+export type DischargeStatus = 'READY' | 'NOT_READY' | 'DISCHARGED';
+export type AnyStatus = PatientStatus | DischargeStatus;
 
-const STATUS_CONFIG: Record<PatientStatus, { label: string; color: string }> = {
+const STATUS_CONFIG: Record<AnyStatus, { label: string; color: string }> = {
+  // Patient statuses
   ESCALATED: { label: 'Escalated', color: '#d5281b' },
   MONITORING: { label: 'Monitoring', color: '#005eb8' },
   ADMITTED: { label: 'Admitted', color: '#007f3b' },
+  // Discharge statuses
+  READY: { label: 'Ready', color: '#007f3b' },
+  NOT_READY: { label: 'Not Ready', color: '#d67f00' },
   DISCHARGED: { label: 'Discharged', color: '#768692' },
 };
 
 interface StatusBadgeProps {
-  status: PatientStatus;
+  status: AnyStatus;
 }
 
 export function StatusBadge({ status }: StatusBadgeProps) {

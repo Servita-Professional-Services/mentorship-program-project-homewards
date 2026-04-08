@@ -1,9 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 
-// TODO [CHALLENGE: Software Engineering] - SE-01
-// Replace this stub with a real page.
-// See docs/challenges/software-engineering.md for requirements.
-
 function formatPathname(pathname: string): string {
   return pathname
     .split('/')

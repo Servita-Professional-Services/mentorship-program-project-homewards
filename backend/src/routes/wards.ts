@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, type IRouter } from 'express';
 import { stubWards } from '../data/wards';
 
 // TODO [CHALLENGE: API Design]
@@ -7,7 +7,7 @@ import { stubWards } from '../data/wards';
 // 3. Add filtering by specialty
 // 4. What HTTP status codes should each scenario return?
 
-export const wardsRouter = Router();
+export const wardsRouter: IRouter = Router();
 
 wardsRouter.get('/', (_req, res) => {
   res.json({ data: stubWards, total: stubWards.length });

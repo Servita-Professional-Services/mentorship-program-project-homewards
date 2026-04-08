@@ -1,74 +1,102 @@
-// Virtual Wards — Domain Schema
-// TODO [CHALLENGE: Data Engineering] - DE-01
-// This schema is defined but the API currently uses stub data in src/data/.
-// Your challenge: spin up a PostgreSQL database, run `prisma migrate dev`,
-// and replace the stub data with real Prisma queries.
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
-model Ward {
-  id        String    @id @default(cuid())
-  name      String
-  specialty String
-  capacity  Int
-  patients  Patient[]
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+model Patient {
+  id          String   @id @default(uuid())
+  nhsNumber   String   @unique
+  firstName   String
+  lastName    String
+  dateOfBirth DateTime
+
+  wardId String?
+  ward   Ward?   @relation(fields: [wardId], references: [id])
+
+  appointments Appointment[]
+  observations Observation[]
+  escalations  Escalation[]
+  discharge    DischargeStatus?
+
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  dischargeNotes DischargeNote[]
 }
 
-model Patient {
-  id           String        @id @default(cuid())
-  name         String
-  nhsNumber    String        @unique
-  dateOfBirth  DateTime
-  status       PatientStatus @default(MONITORING)
-  admittedAt   DateTime      @default(now())
-  dischargedAt DateTime? // null = still admitted
-  ward         Ward          @relation(fields: [wardId], references: [id])
-  wardId       String
-  observations Observation[]
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
+model Ward {
+  id         String  @id @default(uuid())
+  name       String
+  location   String?
+  capacity   Int?
+  speciality String?
 
-  // TODO [CHALLENGE: Data Modelling] - Should discharged patients stay in this table?
-  // What are the implications for GDPR data retention in the NHS?
+  patients Patient[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Appointment {
+  id        String  @id @default(uuid())
+  patientId String
+  patient   Patient @relation(fields: [patientId], references: [id])
+
+  dateTime DateTime
+  status   String // e.g. Scheduled, Completed, Cancelled
+
+  createdAt DateTime @default(now())
 }
 
 model Observation {
-  id         String          @id @default(cuid())
-  type       ObservationType
-  value      Float
-  unit       String
-  recordedAt DateTime        @default(now())
-  patient    Patient         @relation(fields: [patientId], references: [id])
-  patientId  String
-  recordedBy String? // clinician ID — not a FK yet, a challenge to add
+  id        String  @id @default(uuid())
+  patientId String
+  patient   Patient @relation(fields: [patientId], references: [id])
 
-  // TODO [CHALLENGE: Data Engineering] - DE-02
-  // Observations are time-series. Consider what index strategy you'd use,
-  // and whether PostgreSQL alone is the right storage choice.
+  type       String // e.g. BP, HR
+  value      String
+  recordedAt DateTime
 
-  @@index([patientId, recordedAt])
+  createdAt DateTime @default(now())
 }
 
-enum PatientStatus {
-  ADMITTED
-  MONITORING
-  ESCALATED
-  DISCHARGED
+model Escalation {
+  id        String  @id @default(uuid())
+  patientId String
+  patient   Patient @relation(fields: [patientId], references: [id])
+
+  level  String // e.g. LOW | MEDIUM | HIGH
+  reason String?
+  status String  @default("OPEN")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
-enum ObservationType {
-  BLOOD_PRESSURE
-  HEART_RATE
-  OXYGEN_SATURATION
-  TEMPERATURE
-  RESPIRATORY_RATE
+model DischargeStatus {
+  id        String  @id @default(uuid())
+  patientId String  @unique
+  patient   Patient @relation(fields: [patientId], references: [id])
+
+  status            String  @default("PLANNED") // e.g. PLANNED | DISCHARGED | CANCELLED
+  notes             String?
+  transportRequired Boolean @default(false)
+
+  readySince  DateTime? // useful for escalation logic
+  lastUpdated DateTime  @updatedAt
+
+  createdAt DateTime @default(now())
+}
+
+model DischargeNote {
+  id        String  @id @default(uuid())
+  patientId String
+  patient   Patient @relation(fields: [patientId], references: [id])
+  createdBy String // azure ad user id of the staff member who created the note
+
+  note      String
+  createdAt DateTime @default(now())
 }
