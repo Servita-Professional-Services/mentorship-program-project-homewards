@@ -32,10 +32,9 @@ escalationsRouter.post('/', (req, res, next) => {
   }
 
   if (!VALID_LEVELS.includes(level)) {
-    const err = Object.assign(
-      new Error(`level must be one of: ${VALID_LEVELS.join(', ')}`),
-      { statusCode: 400 },
-    );
+    const err = Object.assign(new Error(`level must be one of: ${VALID_LEVELS.join(', ')}`), {
+      statusCode: 400,
+    });
     return next(err);
   }
 

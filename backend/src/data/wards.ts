@@ -1,9 +1,7 @@
-
 // TODO [CHALLENGE: Data Engineering] - Replace with Prisma DB query
 // Run `pnpm db:migrate` and update routes/wards.ts to use PrismaClient
 
-import { Ward } from "@prisma/client";
-
+import { Ward } from '@prisma/client';
 
 export const stubWards: Ward[] = [
   {

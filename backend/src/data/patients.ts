@@ -1,4 +1,3 @@
-
 // TODO [CHALLENGE: Data Engineering] - Replace with Prisma DB query
 // The seeds/patients.csv in /data is a starting point.
 // Consider: how do you safely generate realistic test NHS numbers?

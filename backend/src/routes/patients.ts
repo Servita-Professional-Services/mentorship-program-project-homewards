@@ -71,10 +71,9 @@ patientsRouter.post('/:id/discharge', (req, res, next) => {
   };
 
   if (!VALID_STATUSES.includes(status)) {
-    const err = Object.assign(
-      new Error(`status must be one of: ${VALID_STATUSES.join(', ')}`),
-      { statusCode: 400 },
-    );
+    const err = Object.assign(new Error(`status must be one of: ${VALID_STATUSES.join(', ')}`), {
+      statusCode: 400,
+    });
     return next(err);
   }
 
