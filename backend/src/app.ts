@@ -16,6 +16,7 @@ export function createApp(): Express {
   app.use(corsMiddleware);
   app.use(express.json());
 
+  app.get('/', (_req, res) => res.json({ ok: true }));
   app.use('/health', healthRouter);
   app.use('/api/v1/wards', wardsRouter);
   app.use('/api/v1/patients', patientsRouter);
