@@ -4,12 +4,15 @@
 
 export type DischargeStatusValue = 'READY' | 'NOT_READY' | 'DISCHARGED';
 
+export type PatientStatusValue = 'ADMITTED' | 'MONITORING' | 'ESCALATED' | 'DISCHARGED';
+
 export interface StubPatient {
   id: string;
   firstName: string;
   lastName: string;
   nhsNumber: string;
   wardId: string;
+  status: PatientStatusValue;
   dateOfBirth: Date;
   admittedAt: Date;
   dischargedAt?: Date;
@@ -40,6 +43,7 @@ export const stubPatients: StubPatient[] = [
     lastName: 'Thornton',
     nhsNumber: '943-476-5919',
     wardId: 'ward-001',
+    status: 'MONITORING',
     dateOfBirth: new Date('1952-03-14'),
     admittedAt: new Date('2024-10-20T09:00:00Z'),
     createdAt: new Date(),
@@ -51,6 +55,7 @@ export const stubPatients: StubPatient[] = [
     lastName: 'Okafor',
     nhsNumber: '512-382-7741',
     wardId: 'ward-002',
+    status: 'ESCALATED',
     dateOfBirth: new Date('1967-07-22'),
     admittedAt: new Date('2024-11-01T14:30:00Z'),
     createdAt: new Date(),
@@ -62,6 +67,7 @@ export const stubPatients: StubPatient[] = [
     lastName: 'Patel',
     nhsNumber: '801-234-6612',
     wardId: 'ward-001',
+    status: 'ADMITTED',
     dateOfBirth: new Date('1989-01-09'),
     admittedAt: new Date('2024-11-05T08:15:00Z'),
     createdAt: new Date('2024-11-05T08:15:00Z'),
@@ -73,6 +79,7 @@ export const stubPatients: StubPatient[] = [
     lastName: 'Whitfield',
     nhsNumber: '634-901-2281',
     wardId: 'ward-003',
+    status: 'MONITORING',
     dateOfBirth: new Date('1975-11-30'),
     admittedAt: new Date('2024-10-28T11:00:00Z'),
     createdAt: new Date('2024-10-28T11:00:00Z'),
@@ -84,6 +91,7 @@ export const stubPatients: StubPatient[] = [
     lastName: 'Nkrumah',
     nhsNumber: '772-543-8819',
     wardId: 'ward-002',
+    status: 'DISCHARGED',
     dateOfBirth: new Date('1944-06-03'),
     admittedAt: new Date('2024-10-15T16:45:00Z'),
     dischargedAt: new Date('2024-10-22T10:00:00Z'),

@@ -31,6 +31,7 @@ function toPatientResponse(patient: (typeof stubPatients)[0]) {
     nhsNumber: patient.nhsNumber,
     wardId: patient.wardId,
     ward: wardName(patient.wardId),
+    status: patient.status,
     dateOfBirth: patient.dateOfBirth.toISOString(),
     admittedAt: patient.admittedAt.toISOString(),
     dischargedAt: patient.dischargedAt?.toISOString() ?? null,

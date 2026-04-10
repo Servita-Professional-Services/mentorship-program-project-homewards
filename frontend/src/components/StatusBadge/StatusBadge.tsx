@@ -19,7 +19,9 @@ interface StatusBadgeProps {
 }
 
 export function StatusBadge({ status }: StatusBadgeProps) {
-  const { label, color } = STATUS_CONFIG[status];
+  const config = STATUS_CONFIG[status];
+  if (!config) return null;
+  const { label, color } = config;
   return (
     <span
       style={{
