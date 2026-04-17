@@ -20,7 +20,7 @@ import { StatusBadge } from '../components/StatusBadge/StatusBadge';
 // Build a proper Skeleton loading component and an ErrorState component —
 // both reusable across pages.
 
-const API_BASE = 'http://localhost:3001';
+const API_BASE = import.meta.env.VITE_API_BASE as string;
 
 function getAge(dateOfBirth: string): number {
   const dob = new Date(dateOfBirth);
@@ -137,6 +137,9 @@ export function Patients() {
                   <th className="px-6 py-3 text-left text-xs font-semibold text-text-muted uppercase tracking-wider">
                     Age
                   </th>
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-text-muted uppercase tracking-wider">
+                    Actions
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-surface-border">
@@ -172,6 +175,21 @@ export function Patients() {
                         {daysSince(patient.admittedAt)}d
                       </td>
                       <td className="px-6 py-4 text-text-muted">{getAge(patient.dateOfBirth)}</td>
+                      <td className="px-6 py-4">
+                        {/* ── STEP 4 ────────────────────────────────────────────────────
+                            Add an "Add discharge" button here that navigates to
+                            `/discharge-records/new` (you'll need to pass the patient ID too).
+                            Use e.stopPropagation() so the row click doesn't also fire.
+                            Example:
+                            <button
+                              type="button"
+                              onClick={(e) => { e.stopPropagation(); navigate(`/discharge-records/new`); }}
+                              className="text-xs text-brand-primary hover:underline"
+                            >
+                              Add discharge
+                            </button>
+                        ─────────────────────────────────────────────────────────────── */}
+                      </td>
                     </tr>
                   );
                 })}

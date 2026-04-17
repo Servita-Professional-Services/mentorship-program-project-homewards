@@ -4,6 +4,21 @@ import { Dashboard } from './pages/Dashboard';
 import { Patients } from './pages/Patients';
 import { NotImplemented } from './pages/NotImplemented';
 
+// ─── DISCHARGE COORDINATION — STEP 2 ─────────────────────────────────────────
+//
+// Add the discharge records routes below, following the same pattern as the
+// existing routes above.
+//
+// Pages to import:
+//   import { DischargeRecordsList } from './pages/DischargeRecordsList';
+//   import { DischargeRecords }     from './pages/DischargeRecords';
+//
+// Routes to add inside <Routes>:
+//   <Route path="/discharge-records"     element={<DischargeRecordsList />} />
+//   <Route path="/discharge-records/new" element={<DischargeRecords />} />
+//
+// ─────────────────────────────────────────────────────────────────────────────
+
 export function App() {
   return (
     <BrowserRouter>
@@ -13,6 +28,7 @@ export function App() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/patients" element={<Patients />} />
+            {/* STEP 2 — add discharge routes here */}
             <Route path="*" element={<NotImplemented />} />
           </Routes>
         </main>

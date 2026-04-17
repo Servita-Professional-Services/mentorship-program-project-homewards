@@ -19,6 +19,7 @@
     "@fontsource/inter": "^5.2.8",
     "@health-wards/shared": "workspace:*",
     "react": "^18.3.0",
+    "react-datepicker": "^9.1.0",
     "react-dom": "^18.3.0",
     "react-router-dom": "^7.13.1"
   },

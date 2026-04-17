@@ -17,14 +17,13 @@ model Patient {
   wardId String?
   ward   Ward?   @relation(fields: [wardId], references: [id])
 
-  appointments Appointment[]
-  observations Observation[]
-  escalations  Escalation[]
-  discharge    DischargeStatus?
+  appointments     Appointment[]
+  observations     Observation[]
+  escalations      Escalation[]
+  dischargeRecords DischargeRecord[]
 
-  createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @updatedAt
-  dischargeNotes DischargeNote[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Ward {
@@ -76,27 +75,28 @@ model Escalation {
   updatedAt DateTime @updatedAt
 }
 
-model DischargeStatus {
-  id        String  @id @default(uuid())
-  patientId String  @unique
-  patient   Patient @relation(fields: [patientId], references: [id])
+model DischargeRecord {
+  id        String @id @default(uuid())
+  patientId String
 
-  status            String  @default("PLANNED") // e.g. PLANNED | DISCHARGED | CANCELLED
-  notes             String?
-  transportRequired Boolean @default(false)
-
-  readySince  DateTime? // useful for escalation logic
-  lastUpdated DateTime  @updatedAt
+  dateOfBloodwork          DateTime
+  supportPlanNeeded        Boolean
+  dischargeReason          String
+  preferredDateOfDischarge DateTime
 
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  patient           Patient            @relation(fields: [patientId], references: [id])
+  medicationRecords MedicationRecord[]
 }
 
-model DischargeNote {
-  id        String  @id @default(uuid())
-  patientId String
-  patient   Patient @relation(fields: [patientId], references: [id])
-  createdBy String // azure ad user id of the staff member who created the note
+model MedicationRecord {
+  id             String @id @default(uuid())
+  medicationName String
+  amount         Float
+  measurement    String
 
-  note      String
-  createdAt DateTime @default(now())
+  dischargeRecordId String
+  dischargeRecord   DischargeRecord @relation(fields: [dischargeRecordId], references: [id])
 }
