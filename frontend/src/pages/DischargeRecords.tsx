@@ -81,7 +81,13 @@ export function DischargeRecords() {
   // Date rule: dateOfBloodwork must not be after preferredDateOfDischarge
   function validateForm(): FormErrors {
     const errs: FormErrors = {};
+
+    if (!selectedPatientId) {
+      errs.patientId = 'Please select a patient';
+    }
+
     // your code here
+
     return errs;
   }
 
@@ -97,15 +103,16 @@ export function DischargeRecords() {
       setErrors(validationErrors);
       return;
     }
+    if (!preferredDateOfDischarge || !dateOfBloodwork) return; // type narrowing — validateForm catches these
 
     setErrors({});
-    setSubmitting(true);
     setSubmitError(null);
+    setSubmitting(true);
 
     try {
       await createDischargeRecord(selectedPatientId, {
-        preferredDateOfDischarge: preferredDateOfDischarge!,
-        dateOfBloodwork: dateOfBloodwork!,
+        preferredDateOfDischarge,
+        dateOfBloodwork,
         dischargeReason,
         supportPlanNeeded,
         medicationRecords: medications.map((m) => ({
