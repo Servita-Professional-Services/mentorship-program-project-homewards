@@ -36,9 +36,7 @@ function toResponse(record: DischargeRecordWithMeds) {
     supportPlanNeeded: record.supportPlanNeeded,
     dischargeReason: record.dischargeReason,
     preferredDateOfDischarge: record.preferredDateOfDischarge.toISOString(),
-    medicationRecords: record.medicationRecords.map(
-      ({ dischargeRecordId: _drId, ...med }) => med,
-    ),
+    medicationRecords: record.medicationRecords.map(({ dischargeRecordId: _drId, ...med }) => med),
     createdAt: record.createdAt.toISOString(),
     updatedAt: record.updatedAt.toISOString(),
   };

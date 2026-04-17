@@ -116,7 +116,9 @@ export function DischargeRecords() {
       });
       navigate('/discharge-records');
     } catch (err) {
-      setSubmitError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+      setSubmitError(
+        err instanceof Error ? err.message : 'Something went wrong. Please try again.',
+      );
     } finally {
       setSubmitting(false);
     }
@@ -133,7 +135,9 @@ export function DischargeRecords() {
       <div className="bg-brand-primary px-8 py-10">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-3xl font-bold text-white">New Discharge Record</h1>
-          <p className="mt-1 text-white/60 text-sm">Complete all required fields before submitting</p>
+          <p className="mt-1 text-white/60 text-sm">
+            Complete all required fields before submitting
+          </p>
 
           {selectedPatient && (
             <div className="mt-4 text-sm text-white/80">
@@ -148,7 +152,6 @@ export function DischargeRecords() {
       <div className="max-w-4xl mx-auto px-8 py-8">
         <form onSubmit={handleSubmit} noValidate>
           <div className="bg-surface-card rounded-2xl shadow-sm border border-surface-border p-8 flex flex-col gap-8">
-
             {/* ── STEP 4 — Patient selector ──────────────────────────────────
                 The patient list comes from getPatients() (STEP 3).
                 Once STEP 3 is implemented, this dropdown will populate. */}
@@ -183,11 +186,9 @@ export function DischargeRecords() {
                     setErrors((prev) => ({ ...prev, preferredDateOfDischarge: undefined }));
                   }}
                 />
-               {/* TODO - Date of bloodwork */}
+                {/* TODO - Date of bloodwork */}
 
-                <div className="mt-4">
-                  {/* TODO - Discharge Reason */}
-                </div>
+                <div className="mt-4">{/* TODO - Discharge Reason */}</div>
 
                 <div className="mt-4 flex items-center gap-3">
                   {/* TODO - Checkbox for support plan */}
@@ -237,7 +238,13 @@ export function DischargeRecords() {
                 ))}
               </div>
 
-              <Button type="button" variant="secondary" size="sm" className="mt-4" onClick={addMedication}>
+              <Button
+                type="button"
+                variant="secondary"
+                size="sm"
+                className="mt-4"
+                onClick={addMedication}
+              >
                 + Add medication
               </Button>
             </FormSection>
@@ -247,7 +254,11 @@ export function DischargeRecords() {
             )}
 
             <div className="flex justify-end gap-3 pt-2 border-t border-surface-border">
-              <Button type="button" variant="secondary" onClick={() => navigate('/discharge-records')}>
+              <Button
+                type="button"
+                variant="secondary"
+                onClick={() => navigate('/discharge-records')}
+              >
                 Cancel
               </Button>
               <Button type="submit" variant="primary" disabled={submitting}>

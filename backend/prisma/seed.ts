@@ -45,26 +45,152 @@ async function main() {
 
   const patients = [
     // ward-001 Respiratory
-    { id: 'pat-001', firstName: 'Margaret', lastName: 'Thornton',   nhsNumber: '943-476-5919', wardId: 'ward-001', dateOfBirth: '1952-03-14' },
-    { id: 'pat-003', firstName: 'Priya',    lastName: 'Patel',      nhsNumber: '801-234-6612', wardId: 'ward-001', dateOfBirth: '1989-01-09' },
-    { id: 'pat-006', firstName: 'Eleanor',  lastName: 'Bassett',    nhsNumber: '318-762-4401', wardId: 'ward-001', dateOfBirth: '1961-08-27' },
-    { id: 'pat-007', firstName: 'Thomas',   lastName: 'Adeyemi',    nhsNumber: '557-109-3382', wardId: 'ward-001', dateOfBirth: '1978-04-15' },
-    { id: 'pat-012', firstName: 'Sandra',   lastName: 'Fletcher',   nhsNumber: '224-893-6610', wardId: 'ward-001', dateOfBirth: '1956-11-03' },
-    { id: 'pat-016', firstName: 'Callum',   lastName: 'Drummond',   nhsNumber: '489-201-7734', wardId: 'ward-001', dateOfBirth: '1983-07-19' },
+    {
+      id: 'pat-001',
+      firstName: 'Margaret',
+      lastName: 'Thornton',
+      nhsNumber: '943-476-5919',
+      wardId: 'ward-001',
+      dateOfBirth: '1952-03-14',
+    },
+    {
+      id: 'pat-003',
+      firstName: 'Priya',
+      lastName: 'Patel',
+      nhsNumber: '801-234-6612',
+      wardId: 'ward-001',
+      dateOfBirth: '1989-01-09',
+    },
+    {
+      id: 'pat-006',
+      firstName: 'Eleanor',
+      lastName: 'Bassett',
+      nhsNumber: '318-762-4401',
+      wardId: 'ward-001',
+      dateOfBirth: '1961-08-27',
+    },
+    {
+      id: 'pat-007',
+      firstName: 'Thomas',
+      lastName: 'Adeyemi',
+      nhsNumber: '557-109-3382',
+      wardId: 'ward-001',
+      dateOfBirth: '1978-04-15',
+    },
+    {
+      id: 'pat-012',
+      firstName: 'Sandra',
+      lastName: 'Fletcher',
+      nhsNumber: '224-893-6610',
+      wardId: 'ward-001',
+      dateOfBirth: '1956-11-03',
+    },
+    {
+      id: 'pat-016',
+      firstName: 'Callum',
+      lastName: 'Drummond',
+      nhsNumber: '489-201-7734',
+      wardId: 'ward-001',
+      dateOfBirth: '1983-07-19',
+    },
     // ward-002 Cardiology
-    { id: 'pat-002', firstName: 'Derek',    lastName: 'Okafor',     nhsNumber: '512-382-7741', wardId: 'ward-002', dateOfBirth: '1967-07-22' },
-    { id: 'pat-005', firstName: 'Aisha',    lastName: 'Nkrumah',    nhsNumber: '772-543-8819', wardId: 'ward-002', dateOfBirth: '1944-06-03' },
-    { id: 'pat-008', firstName: 'Frances',  lastName: 'Kwan',       nhsNumber: '631-047-2295', wardId: 'ward-002', dateOfBirth: '1971-02-11' },
-    { id: 'pat-009', firstName: 'Robert',   lastName: 'Singh',      nhsNumber: '745-338-9901', wardId: 'ward-002', dateOfBirth: '1958-09-30' },
-    { id: 'pat-013', firstName: 'Ahmed',    lastName: 'Al-Hassan',  nhsNumber: '362-510-8847', wardId: 'ward-002', dateOfBirth: '1969-12-07' },
-    { id: 'pat-017', firstName: 'Beatrice', lastName: 'Mwangi',     nhsNumber: '508-774-1123', wardId: 'ward-002', dateOfBirth: '1948-03-25' },
+    {
+      id: 'pat-002',
+      firstName: 'Derek',
+      lastName: 'Okafor',
+      nhsNumber: '512-382-7741',
+      wardId: 'ward-002',
+      dateOfBirth: '1967-07-22',
+    },
+    {
+      id: 'pat-005',
+      firstName: 'Aisha',
+      lastName: 'Nkrumah',
+      nhsNumber: '772-543-8819',
+      wardId: 'ward-002',
+      dateOfBirth: '1944-06-03',
+    },
+    {
+      id: 'pat-008',
+      firstName: 'Frances',
+      lastName: 'Kwan',
+      nhsNumber: '631-047-2295',
+      wardId: 'ward-002',
+      dateOfBirth: '1971-02-11',
+    },
+    {
+      id: 'pat-009',
+      firstName: 'Robert',
+      lastName: 'Singh',
+      nhsNumber: '745-338-9901',
+      wardId: 'ward-002',
+      dateOfBirth: '1958-09-30',
+    },
+    {
+      id: 'pat-013',
+      firstName: 'Ahmed',
+      lastName: 'Al-Hassan',
+      nhsNumber: '362-510-8847',
+      wardId: 'ward-002',
+      dateOfBirth: '1969-12-07',
+    },
+    {
+      id: 'pat-017',
+      firstName: 'Beatrice',
+      lastName: 'Mwangi',
+      nhsNumber: '508-774-1123',
+      wardId: 'ward-002',
+      dateOfBirth: '1948-03-25',
+    },
     // ward-003 General Medicine
-    { id: 'pat-004', firstName: 'James',    lastName: 'Whitfield',  nhsNumber: '634-901-2281', wardId: 'ward-003', dateOfBirth: '1975-11-30' },
-    { id: 'pat-010', firstName: 'Catherine',lastName: "O'Brien",    nhsNumber: '891-423-5567', wardId: 'ward-003', dateOfBirth: '1964-05-18' },
-    { id: 'pat-011', firstName: 'Michael',  lastName: 'Osei',       nhsNumber: '173-665-4420', wardId: 'ward-003', dateOfBirth: '1980-10-22' },
-    { id: 'pat-014', firstName: 'Patricia', lastName: 'Nwosu',      nhsNumber: '447-218-3309', wardId: 'ward-003', dateOfBirth: '1955-01-14' },
-    { id: 'pat-015', firstName: 'William',  lastName: 'Kowalski',   nhsNumber: '926-584-7712', wardId: 'ward-003', dateOfBirth: '1972-06-09' },
-    { id: 'pat-018', firstName: 'Deepa',    lastName: 'Ramachandran',nhsNumber:'659-332-0081', wardId: 'ward-003', dateOfBirth: '1987-08-04' },
+    {
+      id: 'pat-004',
+      firstName: 'James',
+      lastName: 'Whitfield',
+      nhsNumber: '634-901-2281',
+      wardId: 'ward-003',
+      dateOfBirth: '1975-11-30',
+    },
+    {
+      id: 'pat-010',
+      firstName: 'Catherine',
+      lastName: "O'Brien",
+      nhsNumber: '891-423-5567',
+      wardId: 'ward-003',
+      dateOfBirth: '1964-05-18',
+    },
+    {
+      id: 'pat-011',
+      firstName: 'Michael',
+      lastName: 'Osei',
+      nhsNumber: '173-665-4420',
+      wardId: 'ward-003',
+      dateOfBirth: '1980-10-22',
+    },
+    {
+      id: 'pat-014',
+      firstName: 'Patricia',
+      lastName: 'Nwosu',
+      nhsNumber: '447-218-3309',
+      wardId: 'ward-003',
+      dateOfBirth: '1955-01-14',
+    },
+    {
+      id: 'pat-015',
+      firstName: 'William',
+      lastName: 'Kowalski',
+      nhsNumber: '926-584-7712',
+      wardId: 'ward-003',
+      dateOfBirth: '1972-06-09',
+    },
+    {
+      id: 'pat-018',
+      firstName: 'Deepa',
+      lastName: 'Ramachandran',
+      nhsNumber: '659-332-0081',
+      wardId: 'ward-003',
+      dateOfBirth: '1987-08-04',
+    },
   ];
 
   for (const p of patients) {
@@ -96,8 +222,8 @@ async function main() {
       supportPlanNeeded: true,
       dischargeReason: 'Patient stable, ready for home care with community nurse follow-up.',
       medications: [
-        { id: 'med-001', medicationName: 'Lisinopril',   amount: 10,  measurement: 'mg' },
-        { id: 'med-002', medicationName: 'Atorvastatin', amount: 20,  measurement: 'mg' },
+        { id: 'med-001', medicationName: 'Lisinopril', amount: 10, measurement: 'mg' },
+        { id: 'med-002', medicationName: 'Atorvastatin', amount: 20, measurement: 'mg' },
       ],
     },
     {
@@ -119,8 +245,8 @@ async function main() {
       supportPlanNeeded: false,
       dischargeReason: 'Pneumonia resolved, oxygen saturations stable on room air.',
       medications: [
-        { id: 'med-010', medicationName: 'Amoxicillin',   amount: 500, measurement: 'mg' },
-        { id: 'med-011', medicationName: 'Prednisolone',  amount: 30,  measurement: 'mg' },
+        { id: 'med-010', medicationName: 'Amoxicillin', amount: 500, measurement: 'mg' },
+        { id: 'med-011', medicationName: 'Prednisolone', amount: 30, measurement: 'mg' },
       ],
     },
     {
@@ -131,9 +257,9 @@ async function main() {
       supportPlanNeeded: true,
       dischargeReason: 'COPD exacerbation resolved. Requires home oxygen assessment.',
       medications: [
-        { id: 'med-020', medicationName: 'Tiotropium',   amount: 18,  measurement: 'mcg' },
-        { id: 'med-021', medicationName: 'Prednisolone', amount: 40,  measurement: 'mg' },
-        { id: 'med-022', medicationName: 'Doxycycline',  amount: 100, measurement: 'mg' },
+        { id: 'med-020', medicationName: 'Tiotropium', amount: 18, measurement: 'mcg' },
+        { id: 'med-021', medicationName: 'Prednisolone', amount: 40, measurement: 'mg' },
+        { id: 'med-022', medicationName: 'Doxycycline', amount: 100, measurement: 'mg' },
       ],
     },
     {
@@ -144,7 +270,7 @@ async function main() {
       supportPlanNeeded: false,
       dischargeReason: 'Asthma attack managed. Peak flow within normal range for 48hrs.',
       medications: [
-        { id: 'med-023', medicationName: 'Salbutamol',   amount: 100, measurement: 'mcg' },
+        { id: 'med-023', medicationName: 'Salbutamol', amount: 100, measurement: 'mcg' },
         { id: 'med-024', medicationName: 'Beclometasone', amount: 200, measurement: 'mcg' },
       ],
     },
@@ -154,10 +280,11 @@ async function main() {
       dateOfBloodwork: '2026-04-08T08:00:00Z',
       preferredDateOfDischarge: '2026-04-11T10:00:00Z',
       supportPlanNeeded: true,
-      dischargeReason: 'Pulmonary embolism treated. Anticoagulation initiated, district nurse arranged.',
+      dischargeReason:
+        'Pulmonary embolism treated. Anticoagulation initiated, district nurse arranged.',
       medications: [
-        { id: 'med-040', medicationName: 'Apixaban',     amount: 10,  measurement: 'mg' },
-        { id: 'med-041', medicationName: 'Omeprazole',   amount: 20,  measurement: 'mg' },
+        { id: 'med-040', medicationName: 'Apixaban', amount: 10, measurement: 'mg' },
+        { id: 'med-041', medicationName: 'Omeprazole', amount: 20, measurement: 'mg' },
       ],
     },
     {
@@ -189,11 +316,12 @@ async function main() {
       dateOfBloodwork: '2026-04-09T08:30:00Z',
       preferredDateOfDischarge: '2026-04-13T10:00:00Z',
       supportPlanNeeded: true,
-      dischargeReason: 'AF rate controlled. Anticoagulation commenced, cardiology outpatient follow-up booked.',
+      dischargeReason:
+        'AF rate controlled. Anticoagulation commenced, cardiology outpatient follow-up booked.',
       medications: [
-        { id: 'med-025', medicationName: 'Bisoprolol', amount: 5,   measurement: 'mg' },
-        { id: 'med-026', medicationName: 'Warfarin',   amount: 3,   measurement: 'mg' },
-        { id: 'med-027', medicationName: 'Ramipril',   amount: 2.5, measurement: 'mg' },
+        { id: 'med-025', medicationName: 'Bisoprolol', amount: 5, measurement: 'mg' },
+        { id: 'med-026', medicationName: 'Warfarin', amount: 3, measurement: 'mg' },
+        { id: 'med-027', medicationName: 'Ramipril', amount: 2.5, measurement: 'mg' },
       ],
     },
     {
@@ -205,7 +333,7 @@ async function main() {
       dischargeReason: 'Hypertensive crisis managed. BP stable on adjusted medication.',
       medications: [
         { id: 'med-028', medicationName: 'Amlodipine', amount: 10, measurement: 'mg' },
-        { id: 'med-029', medicationName: 'Ramipril',   amount: 5,  measurement: 'mg' },
+        { id: 'med-029', medicationName: 'Ramipril', amount: 5, measurement: 'mg' },
       ],
     },
     {
@@ -215,9 +343,7 @@ async function main() {
       preferredDateOfDischarge: '2024-10-22T10:00:00Z',
       supportPlanNeeded: false,
       dischargeReason: 'Treatment complete. No further clinical intervention required.',
-      medications: [
-        { id: 'med-003', medicationName: 'Metformin', amount: 500, measurement: 'mg' },
-      ],
+      medications: [{ id: 'med-003', medicationName: 'Metformin', amount: 500, measurement: 'mg' }],
     },
     {
       id: 'dr-010',
@@ -225,11 +351,12 @@ async function main() {
       dateOfBloodwork: '2026-04-11T09:00:00Z',
       preferredDateOfDischarge: '2026-04-16T10:00:00Z',
       supportPlanNeeded: true,
-      dischargeReason: 'Heart failure exacerbation stabilised. Community heart failure nurse to follow up.',
+      dischargeReason:
+        'Heart failure exacerbation stabilised. Community heart failure nurse to follow up.',
       medications: [
-        { id: 'med-030', medicationName: 'Furosemide',   amount: 40, measurement: 'mg' },
-        { id: 'med-031', medicationName: 'Spironolactone',amount: 25, measurement: 'mg' },
-        { id: 'med-032', medicationName: 'Bisoprolol',   amount: 2.5,measurement: 'mg' },
+        { id: 'med-030', medicationName: 'Furosemide', amount: 40, measurement: 'mg' },
+        { id: 'med-031', medicationName: 'Spironolactone', amount: 25, measurement: 'mg' },
+        { id: 'med-032', medicationName: 'Bisoprolol', amount: 2.5, measurement: 'mg' },
       ],
     },
     {
@@ -251,10 +378,10 @@ async function main() {
       supportPlanNeeded: true,
       dischargeReason: 'NSTEMI managed medically. Cardiology review in 6 weeks.',
       medications: [
-        { id: 'med-034', medicationName: 'Aspirin',      amount: 75,  measurement: 'mg' },
-        { id: 'med-035', medicationName: 'Ticagrelor',   amount: 90,  measurement: 'mg' },
-        { id: 'med-036', medicationName: 'Atorvastatin', amount: 80,  measurement: 'mg' },
-        { id: 'med-037', medicationName: 'Bisoprolol',   amount: 5,   measurement: 'mg' },
+        { id: 'med-034', medicationName: 'Aspirin', amount: 75, measurement: 'mg' },
+        { id: 'med-035', medicationName: 'Ticagrelor', amount: 90, measurement: 'mg' },
+        { id: 'med-036', medicationName: 'Atorvastatin', amount: 80, measurement: 'mg' },
+        { id: 'med-037', medicationName: 'Bisoprolol', amount: 5, measurement: 'mg' },
       ],
     },
     {
@@ -263,10 +390,11 @@ async function main() {
       dateOfBloodwork: '2026-04-13T09:30:00Z',
       preferredDateOfDischarge: '2026-04-19T10:00:00Z',
       supportPlanNeeded: false,
-      dischargeReason: 'Chest pain investigated — musculoskeletal cause confirmed. Discharged with analgesia.',
+      dischargeReason:
+        'Chest pain investigated — musculoskeletal cause confirmed. Discharged with analgesia.',
       medications: [
-        { id: 'med-044', medicationName: 'Naproxen',   amount: 500, measurement: 'mg' },
-        { id: 'med-045', medicationName: 'Omeprazole', amount: 20,  measurement: 'mg' },
+        { id: 'med-044', medicationName: 'Naproxen', amount: 500, measurement: 'mg' },
+        { id: 'med-045', medicationName: 'Omeprazole', amount: 20, measurement: 'mg' },
       ],
     },
     {
@@ -277,9 +405,9 @@ async function main() {
       supportPlanNeeded: true,
       dischargeReason: 'Slow AF managed. Requires carer support and weekly INR monitoring.',
       medications: [
-        { id: 'med-061', medicationName: 'Digoxin',    amount: 125, measurement: 'mcg' },
-        { id: 'med-062', medicationName: 'Warfarin',   amount: 4,   measurement: 'mg' },
-        { id: 'med-063', medicationName: 'Furosemide', amount: 80,  measurement: 'mg' },
+        { id: 'med-061', medicationName: 'Digoxin', amount: 125, measurement: 'mcg' },
+        { id: 'med-062', medicationName: 'Warfarin', amount: 4, measurement: 'mg' },
+        { id: 'med-063', medicationName: 'Furosemide', amount: 80, measurement: 'mg' },
       ],
     },
     // ── General Medicine ward-003 ─────────────────────────────────────────
@@ -289,7 +417,8 @@ async function main() {
       dateOfBloodwork: '2026-04-05T08:00:00Z',
       preferredDateOfDischarge: '2026-04-09T10:00:00Z',
       supportPlanNeeded: false,
-      dischargeReason: 'Cellulitis resolved following IV antibiotics. Oral course to complete at home.',
+      dischargeReason:
+        'Cellulitis resolved following IV antibiotics. Oral course to complete at home.',
       medications: [
         { id: 'med-012', medicationName: 'Flucloxacillin', amount: 500, measurement: 'mg' },
       ],
@@ -300,11 +429,12 @@ async function main() {
       dateOfBloodwork: '2026-04-12T09:00:00Z',
       preferredDateOfDischarge: '2026-04-18T11:00:00Z',
       supportPlanNeeded: true,
-      dischargeReason: 'Decompensated T2DM stabilised. Insulin regimen adjusted, diabetic nurse to follow up.',
+      dischargeReason:
+        'Decompensated T2DM stabilised. Insulin regimen adjusted, diabetic nurse to follow up.',
       medications: [
         { id: 'med-046', medicationName: 'Insulin Glargine', amount: 20, measurement: 'units' },
-        { id: 'med-047', medicationName: 'Metformin',        amount: 1000,measurement: 'mg' },
-        { id: 'med-048', medicationName: 'Empagliflozin',    amount: 10,  measurement: 'mg' },
+        { id: 'med-047', medicationName: 'Metformin', amount: 1000, measurement: 'mg' },
+        { id: 'med-048', medicationName: 'Empagliflozin', amount: 10, measurement: 'mg' },
       ],
     },
     {
@@ -326,8 +456,8 @@ async function main() {
       supportPlanNeeded: false,
       dischargeReason: 'Acute kidney injury resolved. Nephrology to review in outpatients.',
       medications: [
-        { id: 'med-050', medicationName: 'Amlodipine',  amount: 5,  measurement: 'mg' },
-        { id: 'med-051', medicationName: 'Omeprazole',  amount: 20, measurement: 'mg' },
+        { id: 'med-050', medicationName: 'Amlodipine', amount: 5, measurement: 'mg' },
+        { id: 'med-051', medicationName: 'Omeprazole', amount: 20, measurement: 'mg' },
       ],
     },
     {
@@ -338,8 +468,8 @@ async function main() {
       supportPlanNeeded: true,
       dischargeReason: 'Hip fracture post-operative recovery. Physio and OT package arranged.',
       medications: [
-        { id: 'med-052', medicationName: 'Co-codamol',    amount: 30,  measurement: 'mg' },
-        { id: 'med-053', medicationName: 'Rivaroxaban',   amount: 10,  measurement: 'mg' },
+        { id: 'med-052', medicationName: 'Co-codamol', amount: 30, measurement: 'mg' },
+        { id: 'med-053', medicationName: 'Rivaroxaban', amount: 10, measurement: 'mg' },
         { id: 'med-054', medicationName: 'Levothyroxine', amount: 100, measurement: 'mcg' },
       ],
     },
@@ -363,7 +493,7 @@ async function main() {
       dischargeReason: 'Abdominal pain investigated. Gallstones confirmed, surgical referral made.',
       medications: [
         { id: 'med-038', medicationName: 'Omeprazole', amount: 20, measurement: 'mg' },
-        { id: 'med-039', medicationName: 'Buscopan',   amount: 10, measurement: 'mg' },
+        { id: 'med-039', medicationName: 'Buscopan', amount: 10, measurement: 'mg' },
       ],
     },
     {
@@ -372,11 +502,11 @@ async function main() {
       dateOfBloodwork: '2026-04-13T08:30:00Z',
       preferredDateOfDischarge: '2026-04-28T10:00:00Z',
       supportPlanNeeded: true,
-      dischargeReason: 'Crohn\'s flare managed with steroids. Gastroenterology follow-up arranged.',
+      dischargeReason: "Crohn's flare managed with steroids. Gastroenterology follow-up arranged.",
       medications: [
-        { id: 'med-064', medicationName: 'Prednisolone',  amount: 40, measurement: 'mg' },
-        { id: 'med-065', medicationName: 'Azathioprine',  amount: 100,measurement: 'mg' },
-        { id: 'med-066', medicationName: 'Omeprazole',    amount: 20, measurement: 'mg' },
+        { id: 'med-064', medicationName: 'Prednisolone', amount: 40, measurement: 'mg' },
+        { id: 'med-065', medicationName: 'Azathioprine', amount: 100, measurement: 'mg' },
+        { id: 'med-066', medicationName: 'Omeprazole', amount: 20, measurement: 'mg' },
       ],
     },
   ];

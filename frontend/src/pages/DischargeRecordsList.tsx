@@ -100,7 +100,6 @@ export function DischargeRecordsList() {
       </div>
 
       <div className="max-w-7xl mx-auto px-8 py-8">
-
         {/* Filter bar — ward and date range filters */}
         <div className="bg-surface-card rounded-2xl shadow-sm border border-surface-border px-6 py-4 mb-6">
           <div className="flex flex-wrap items-end gap-4">
@@ -155,7 +154,9 @@ export function DischargeRecordsList() {
         {/* Error */}
         {error && (
           <div className="text-center py-24">
-            <p className="font-medium" style={{ color: '#d5281b' }}>{error}</p>
+            <p className="font-medium" style={{ color: '#d5281b' }}>
+              {error}
+            </p>
             <p className="mt-2 text-sm text-text-muted">
               Check that <code>pnpm dev</code> is running
             </p>
@@ -171,7 +172,8 @@ export function DischargeRecordsList() {
                 ? 'No discharge records found.'
                 : `${records.length} record${records.length !== 1 ? 's' : ''} loaded — see STEP 6 above to build the table`}
               <p className="mt-1 text-xs opacity-60">
-                Hint: use wardName(r.wardId), formatDate(r.preferredDateOfDischarge), isPast(r.preferredDateOfDischarge)
+                Hint: use wardName(r.wardId), formatDate(r.preferredDateOfDischarge),
+                isPast(r.preferredDateOfDischarge)
               </p>
             </div>
           </div>
