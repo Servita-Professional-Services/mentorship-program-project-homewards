@@ -56,30 +56,27 @@ CREATE TABLE "Escalation" (
 );
 
 -- CreateTable
-CREATE TABLE "DischargeStatus" (
+CREATE TABLE "DischargeRecord" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "patientId" TEXT NOT NULL,
-    "status" TEXT NOT NULL DEFAULT 'PLANNED',
-    "notes" TEXT,
-    "transportRequired" BOOLEAN NOT NULL DEFAULT false,
-    "readySince" DATETIME,
-    "lastUpdated" DATETIME NOT NULL,
+    "dateOfBloodwork" DATETIME NOT NULL,
+    "supportPlanNeeded" BOOLEAN NOT NULL,
+    "dischargeReason" TEXT NOT NULL,
+    "preferredDateOfDischarge" DATETIME NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT "DischargeStatus_patientId_fkey" FOREIGN KEY ("patientId") REFERENCES "Patient" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    "updatedAt" DATETIME NOT NULL,
+    CONSTRAINT "DischargeRecord_patientId_fkey" FOREIGN KEY ("patientId") REFERENCES "Patient" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateTable
-CREATE TABLE "DischargeNote" (
+CREATE TABLE "MedicationRecord" (
     "id" TEXT NOT NULL PRIMARY KEY,
-    "patientId" TEXT NOT NULL,
-    "createdBy" TEXT NOT NULL,
-    "note" TEXT NOT NULL,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT "DischargeNote_patientId_fkey" FOREIGN KEY ("patientId") REFERENCES "Patient" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    "medicationName" TEXT NOT NULL,
+    "amount" REAL NOT NULL,
+    "measurement" TEXT NOT NULL,
+    "dischargeRecordId" TEXT NOT NULL,
+    CONSTRAINT "MedicationRecord_dischargeRecordId_fkey" FOREIGN KEY ("dischargeRecordId") REFERENCES "DischargeRecord" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Patient_nhsNumber_key" ON "Patient"("nhsNumber");
-
--- CreateIndex
-CREATE UNIQUE INDEX "DischargeStatus_patientId_key" ON "DischargeStatus"("patientId");

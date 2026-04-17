@@ -52,13 +52,43 @@ This installs packages for the frontend, backend, and shared library in one go.
 
 ---
 
-## 4. Generate the database types
+## 4. Set up the database
 
-The project uses Prisma for database access. Run this to generate the TypeScript types (no database needed):
+The project uses a local SQLite database (a single file on your machine — no server needed).
+
+**4a. Create the environment file**
+
+Create a file called `.env` inside the `backend/` folder with this content:
+
+```
+DATABASE_URL="file:./dev.db"
+```
+
+**4b. Generate the Prisma client**
 
 ```
 pnpm --filter '@health-wards/api' db:generate
 ```
+
+**4c. Run the database migrations**
+
+This creates the database file and all the tables:
+
+```
+pnpm --filter '@health-wards/api' db:migrate
+```
+
+When prompted for a migration name, press Enter to accept the default.
+
+**4d. Seed sample data**
+
+This loads patients, wards, and discharge records into the database:
+
+```
+pnpm --filter '@health-wards/api' db:seed
+```
+
+You should see: `Seed complete — 18 patients, 24 discharge records.`
 
 ---
 
@@ -77,6 +107,18 @@ This starts both the frontend and backend together.
 
 ---
 
+## 6. Browse the database (optional)
+
+Prisma Studio gives you a visual browser for the database — useful for checking that your data looks right:
+
+```
+pnpm --filter '@health-wards/api' db:studio
+```
+
+Opens at http://localhost:5555
+
+---
+
 ## Project structure
 
 ```
@@ -86,6 +128,20 @@ packages/   → Shared TypeScript types
 terraform/  → Infrastructure config (not needed locally)
 docs/       → Challenges and programme info
 ```
+
+---
+
+## Useful database commands
+
+```
+pnpm --filter '@health-wards/api' db:generate   # regenerate Prisma types from schema
+pnpm --filter '@health-wards/api' db:migrate    # apply any new migrations
+pnpm --filter '@health-wards/api' db:seed       # load sample data (safe to re-run)
+pnpm --filter '@health-wards/api' db:reset      # wipe and rebuild the database from scratch
+pnpm --filter '@health-wards/api' db:studio     # open Prisma Studio (visual DB browser)
+```
+
+> **Tip:** If something looks wrong with the data, `db:reset` will wipe the database and re-run both migrations and the seed automatically.
 
 ---
 
@@ -101,25 +157,8 @@ node -v
 pnpm -v
 ```
 
-**Reset and reinstall dependencies:**
+**The discharge records page shows no data?**
+Make sure you've run `db:migrate` and `db:seed` (steps 4c and 4d).
 
-```
-pnpm install
-```
-
----
-
-## Database (optional)
-
-The app runs on stub data by default — no database setup required.
-
-If you want to connect a real database, see the Data Engineering challenge in [docs/challenges/data-engineering.md](challenges/data-engineering.md).
-
-Useful database commands (run from the project root):
-
-```
-pnpm --filter '@health-wards/api' db:generate   # generate Prisma types from schema
-pnpm --filter '@health-wards/api' db:migrate    # apply migrations (needs DATABASE_URL)
-pnpm --filter '@health-wards/api' db:reset      # drop and re-apply all migrations
-pnpm --filter '@health-wards/api' db:studio     # open Prisma Studio (visual DB browser)
-```
+**Prisma type errors in your editor?**
+Run `db:generate` to refresh the generated types, then restart your editor's TypeScript server.

@@ -26,7 +26,6 @@ const NAV: NavItem[] = [
     children: [
       { label: 'All Patients', href: '/patients' },
       { label: 'Admissions', href: '/patients/admissions' },
-      { label: 'Discharges', href: '/patients/discharges' },
     ],
   },
   {
@@ -34,6 +33,13 @@ const NAV: NavItem[] = [
     children: [
       { label: 'Latest Readings', href: '/observations/latest' },
       { label: 'Vital Trends', href: '/observations/trends' },
+    ],
+  },
+  {
+    label: 'Discharges',
+    children: [
+      { label: 'All Discharge Records', href: '/discharge-records' },
+      { label: 'New Discharge Record', href: '/discharge-records/new' },
     ],
   },
   {

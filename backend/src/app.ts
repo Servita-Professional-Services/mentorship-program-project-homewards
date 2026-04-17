@@ -5,6 +5,7 @@ import { healthRouter } from './routes/health';
 import { wardsRouter } from './routes/wards';
 import { patientsRouter } from './routes/patients';
 import { escalationsRouter } from './routes/escalations';
+import { dischargeRecordsRouter, dischargeRecordsListRouter } from './routes/dischargeRecords';
 
 // TODO [CHALLENGE: Architecture] - This is a single Express app.
 // How would you split this into microservices? What would the trade-offs be?
@@ -20,7 +21,9 @@ export function createApp(): Express {
   app.use('/health', healthRouter);
   app.use('/api/v1/wards', wardsRouter);
   app.use('/api/v1/patients', patientsRouter);
+  app.use('/api/v1/patients', dischargeRecordsRouter);
   app.use('/api/v1/escalations', escalationsRouter);
+  app.use('/api/v1/discharge-coordination', dischargeRecordsListRouter);
 
   // Error handling must be registered last
   app.use(errorHandler);
