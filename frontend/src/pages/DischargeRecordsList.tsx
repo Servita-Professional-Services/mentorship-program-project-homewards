@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-// import { useNavigate } from 'react-router-dom'; // ← uncomment for STEP 3
+import { useNavigate } from 'react-router-dom';
 import type { Ward } from '@health-wards/shared';
 import { Select } from '../components/Select/Select';
 import { DatePickerInput } from '../components/DatePickerInput/DatePickerInput';
@@ -38,8 +38,31 @@ export function isPast(iso: string): boolean {
   return new Date(iso) < new Date();
 }
 
+
+export function isToday(iso: string): boolean {
+  const date = new Date(iso);
+  const today = new Date();
+  return (
+    date.getDate() === today.getDate() &&
+    date.getMonth() === today.getMonth() &&
+    date.getFullYear() === today.getFullYear()
+  );
+}
+
+export function isThisWeek(iso: string): boolean {
+  const date = new Date(iso);
+  const today = new Date();
+  const startOfWeek = new Date(today);
+  startOfWeek.setDate(today.getDate() - today.getDay());
+  startOfWeek.setHours(0, 0, 0, 0);
+  const endOfWeek = new Date(startOfWeek);
+  endOfWeek.setDate(startOfWeek.getDate() + 6);
+  endOfWeek.setHours(23, 59, 59, 999);
+  return date >= startOfWeek && date <= endOfWeek;
+}
+
 export function DischargeRecordsList() {
-  // const navigate = useNavigate(); // ← uncomment for STEP 3
+  const navigate = useNavigate();
 
   const [records, setRecords] = useState<DischargeEntry[]>([]);
   const [wards, setWards] = useState<Ward[]>([]);
@@ -79,6 +102,9 @@ export function DischargeRecordsList() {
   const wardName = (id: string | null) => wards.find((w) => w.id === id)?.name ?? '—';
 
   const hasFilters = wardId || startDate || endDate;
+  const todayCount = records.filter((r) => isToday(r.preferredDateOfDischarge)).length;
+  const thisWeekCount = records.filter((r) => isThisWeek(r.preferredDateOfDischarge)).length;
+  const overdueCount = records.filter((r) => isPast(r.preferredDateOfDischarge)).length;
 
   return (
     <>
@@ -91,15 +117,37 @@ export function DischargeRecordsList() {
               Planned discharges across all virtual wards
             </p>
           </div>
-          {/* ── STEP 3 ────────────────────────────────────────────────────────────
-              Add a button here that navigates to '/discharge-records/new'.
-              Use the Button component with variant="secondary".
-              Example: <Button variant="secondary" onClick={() => navigate('/discharge-records/new')}>+ New record</Button>
-          ─────────────────────────────────────────────────────────────────────── */}
+          <Button variant="secondary" onClick={() => navigate('/discharge-records/new')}>
+            + New record
+          </Button>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-8 py-8">
+        {/* Stats bar */}
+        {!loading && !error && (
+          <div className="grid grid-cols-3 gap-4 mb-6">
+            <div className="bg-surface-card rounded-2xl shadow-sm border border-surface-border px-6 py-5">
+              <p className="text-sm text-text-muted">Today</p>
+              <p className="text-3xl font-bold text-text-primary mt-1">{todayCount}</p>
+              <p className="text-xs text-text-muted mt-1">planned discharges</p>
+            </div>
+            <div className="bg-surface-card rounded-2xl shadow-sm border border-surface-border px-6 py-5">
+              <p className="text-sm text-text-muted">This week</p>
+              <p className="text-3xl font-bold text-text-primary mt-1">{thisWeekCount}</p>
+              <p className="text-xs text-text-muted mt-1">planned discharges</p>
+            </div>
+            <div className="bg-surface-card rounded-2xl shadow-sm border border-surface-border px-6 py-5">
+              <p className="text-sm text-text-muted">Overdue</p>
+              <p
+                className={`text-3xl font-bold mt-1 ${overdueCount > 0 ? 'text-amber-500' : 'text-text-primary'}`}
+              >
+                {overdueCount}
+              </p>
+              <p className="text-xs text-text-muted mt-1">past discharge date</p>
+            </div>
+          </div>
+        )}
         {/* Filter bar — ward and date range filters */}
         <div className="bg-surface-card rounded-2xl shadow-sm border border-surface-border px-6 py-4 mb-6">
           <div className="flex flex-wrap items-end gap-4">
@@ -167,15 +215,46 @@ export function DischargeRecordsList() {
         {!loading && !error && (
           <div className="bg-surface-card rounded-2xl shadow-sm border border-surface-border overflow-hidden">
             {/* your table goes here — records, wardName(), formatDate(), isPast() are all available */}
-            <div className="px-6 py-16 text-center text-text-muted text-sm">
-              {records.length === 0
-                ? 'No discharge records found.'
-                : `${records.length} record${records.length !== 1 ? 's' : ''} loaded — see STEP 6 above to build the table`}
-              <p className="mt-1 text-xs opacity-60">
-                Hint: use wardName(r.wardId), formatDate(r.preferredDateOfDischarge),
-                isPast(r.preferredDateOfDischarge)
-              </p>
-            </div>
+            {records.length === 0 ? (
+              <div className="px-6 py-16 text-center text-text-muted text-sm">
+                No discharge records found.
+              </div>
+            ) : (
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-surface-border text-left text-text-muted">
+                    <th className="px-6 py-3 font-medium">Patient</th>
+                    <th className="px-6 py-3 font-medium">NHS Number</th>
+                    <th className="px-6 py-3 font-medium">Ward</th>
+                    <th className="px-6 py-3 font-medium">Discharge Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {records.map((r) => (
+                    <tr
+                      key={r.id}
+                      className={`border-b border-surface-border last:border-0 ${
+                        isPast(r.preferredDateOfDischarge) ? 'bg-amber-50' : ''
+                      }`}
+                    >
+                      <td className="px-6 py-4 font-medium">{r.patientName}</td>
+                      <td className="px-6 py-4 text-text-muted">{r.nhsNumber}</td>
+                      <td className="px-6 py-4 text-text-muted">{wardName(r.wardId)}</td>
+                      <td className="px-6 py-4">
+                        <span
+                          className={`inline-flex items-center gap-1 ${
+                            isPast(r.preferredDateOfDischarge) ? 'text-amber-600 font-medium' : ''
+                          }`}
+                        >
+                          {isPast(r.preferredDateOfDischarge) && '⚠ '}
+                          {formatDate(r.preferredDateOfDischarge)}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
           </div>
         )}
       </div>

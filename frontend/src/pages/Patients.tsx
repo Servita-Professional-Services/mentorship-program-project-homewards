@@ -176,19 +176,16 @@ export function Patients() {
                       </td>
                       <td className="px-6 py-4 text-text-muted">{getAge(patient.dateOfBirth)}</td>
                       <td className="px-6 py-4">
-                        {/* ── STEP 4 ────────────────────────────────────────────────────
-                            Add an "Add discharge" button here that navigates to
-                            `/discharge-records/new` (you'll need to pass the patient ID too).
-                            Use e.stopPropagation() so the row click doesn't also fire.
-                            Example:
-                            <button
-                              type="button"
-                              onClick={(e) => { e.stopPropagation(); navigate(`/discharge-records/new`); }}
-                              className="text-xs text-brand-primary hover:underline"
-                            >
-                              Add discharge
-                            </button>
-                        ─────────────────────────────────────────────────────────────── */}
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            navigate(`/discharge-records/new?patientId=${patient.id}`);
+                          }}
+                          className="text-xs text-brand-primary hover:underline"
+                        >
+                          Add discharge
+                        </button>
                       </td>
                     </tr>
                   );

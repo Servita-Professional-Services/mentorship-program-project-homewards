@@ -88,6 +88,13 @@ export function DischargeRecords() {
 
     // your code here
 
+    if (!preferredDateOfDischarge) {
+      errs.preferredDateOfDischarge = 'Please select a date';
+    }
+
+    if (!dischargeReason) {
+      errs.dischargeReason = 'Please provide a reason for discharge';
+    }
     return errs;
   }
 
@@ -193,12 +200,45 @@ export function DischargeRecords() {
                     setErrors((prev) => ({ ...prev, preferredDateOfDischarge: undefined }));
                   }}
                 />
-                {/* TODO - Date of bloodwork */}
+                {
+                  <DatePickerInput
+                    id="dateOfBloodwork"
+                    label="Date of bloodwork"
+                    selected={dateOfBloodwork}
+                    error={errors.dateOfBloodwork}
+                    onChange={(date) => {
+                      setDateOfBloodwork(date);
+                      setErrors((prev) => ({ ...prev, dateOfBloodwork: undefined }));
+                    }}
+                  />
+                }
 
-                <div className="mt-4">{/* TODO - Discharge Reason */}</div>
+                <div className="mt-4">
+                  {
+                    <TextArea
+                      id="dischargeReason"
+                      label="Discharge reason"
+                      value={dischargeReason}
+                      error={errors.dischargeReason}
+                      onChange={(e) => {
+                        setDischargeReason(e.target.value);
+                        setErrors((prev) => ({ ...prev, dischargeReason: undefined }));
+                      }}
+                    />
+                  }
+                </div>
 
                 <div className="mt-4 flex items-center gap-3">
-                  {/* TODO - Checkbox for support plan */}
+                  <input
+                    id="supportPlanNeeded"
+                    type="checkbox"
+                    checked={supportPlanNeeded}
+                    onChange={(e) => setSupportPlanNeeded(e.target.checked)}
+                    className="h-4 w-4 rounded border-surface-border"
+                  />
+                  <label htmlFor="supportPlanNeeded" className="text-sm text-text-primary">
+                    Support plan needed
+                  </label>
                 </div>
               </div>
             </FormSection>

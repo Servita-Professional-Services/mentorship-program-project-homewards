@@ -3,6 +3,8 @@ import { NavBar } from './components/NavBar/NavBar';
 import { Dashboard } from './pages/Dashboard';
 import { Patients } from './pages/Patients';
 import { NotImplemented } from './pages/NotImplemented';
+  import { DischargeRecordsList } from './pages/DischargeRecordsList';
+  import { DischargeRecords }     from './pages/DischargeRecords';
 
 // ─── DISCHARGE COORDINATION — STEP 2 ─────────────────────────────────────────
 //
@@ -28,7 +30,9 @@ export function App() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/patients" element={<Patients />} />
+            <Route path="/discharge-records" element={<DischargeRecordsList />} />
             {/* STEP 2 — add discharge routes here */}
+            <Route path="/discharge-records/new" element={<DischargeRecords />} />
             <Route path="*" element={<NotImplemented />} />
           </Routes>
         </main>

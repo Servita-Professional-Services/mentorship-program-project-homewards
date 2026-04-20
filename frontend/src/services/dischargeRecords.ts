@@ -64,8 +64,19 @@ export async function getDischargeRecords(
 //
 // ─────────────────────────────────────────────────────────────────────────────
 export async function createDischargeRecord(
-  _patientId: string,
-  _payload: CreateDischargeRecordPayload,
+  patientId: string,
+  payload: CreateDischargeRecordPayload,
 ): Promise<void> {
-  // your code here
+  const res = await fetch(`${API_BASE}/api/v1/patients/${patientId}/discharge-records`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!res.ok) {
+    const errorJson = await res.json().catch(() => null);
+    throw new Error(errorJson?.message ?? `Failed to create discharge record: ${res.status}`);
+  }
 }
