@@ -38,7 +38,6 @@ export function isPast(iso: string): boolean {
   return new Date(iso) < new Date();
 }
 
-
 export function isToday(iso: string): boolean {
   const date = new Date(iso);
   const today = new Date();

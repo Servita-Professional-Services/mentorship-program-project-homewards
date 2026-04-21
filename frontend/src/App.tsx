@@ -3,8 +3,8 @@ import { NavBar } from './components/NavBar/NavBar';
 import { Dashboard } from './pages/Dashboard';
 import { Patients } from './pages/Patients';
 import { NotImplemented } from './pages/NotImplemented';
-  import { DischargeRecordsList } from './pages/DischargeRecordsList';
-  import { DischargeRecords }     from './pages/DischargeRecords';
+import { DischargeRecordsList } from './pages/DischargeRecordsList';
+import { DischargeRecords } from './pages/DischargeRecords';
 
 // ─── DISCHARGE COORDINATION — STEP 2 ─────────────────────────────────────────
 //

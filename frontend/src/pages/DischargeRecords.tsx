@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import type { Patient } from '@health-wards/shared';
 import { Input } from '../components/Input/Input';
 import { NumberInput } from '../components/NumberInput/NumberInput';
@@ -9,6 +8,7 @@ import { Button } from '../components/Button/Button';
 import { Select } from '../components/Select/Select';
 import { getPatients } from '../services/patients';
 import { createDischargeRecord } from '../services/dischargeRecords';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 type FormErrors = Partial<
   Record<'patientId' | 'preferredDateOfDischarge' | 'dateOfBloodwork' | 'dischargeReason', string>
@@ -34,10 +34,11 @@ function FormSection({ title, children }: { title: string; children: React.React
 
 export function DischargeRecords() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   // ── Patient selection ──────────────────────────────────────────────────────
   const [patients, setPatients] = useState<Patient[]>([]);
-  const [selectedPatientId, setSelectedPatientId] = useState('');
+  const [selectedPatientId, setSelectedPatientId] = useState(searchParams.get('patientId') ?? '');
   const selectedPatient = patients.find((p) => p.id === selectedPatientId) ?? null;
 
   // Populated once STEP 3 (getPatients) is implemented

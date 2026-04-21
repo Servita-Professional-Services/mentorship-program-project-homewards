@@ -13,5 +13,8 @@ const API_BASE = import.meta.env.VITE_API_BASE as string;
 //
 // ─────────────────────────────────────────────────────────────────────────────
 export async function getPatients(): Promise<Patient[]> {
-  return [];
+  const res = await fetch(`${API_BASE}/api/v1/patients`);
+  if (!res.ok) throw new Error(`Failed to fetch patients: ${res.status}`);
+  const json = await res.json();
+  return json.data;
 }

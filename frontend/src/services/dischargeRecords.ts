@@ -45,11 +45,23 @@ export interface CreateDischargeRecordPayload {
 //
 // ─────────────────────────────────────────────────────────────────────────────
 export async function getDischargeRecords(
-  _filters: DischargeRecordFilters = {},
+  filters: DischargeRecordFilters = {},
 ): Promise<DischargeEntry[]> {
-  return [];
-}
+  const params = new URLSearchParams();
+  if (filters.wardId) params.set('wardId', filters.wardId);
+  if (filters.startDate) params.set('startDate', filters.startDate.toISOString());
+  if (filters.endDate) params.set('endDate', filters.endDate.toISOString());
 
+  const query = params.toString();
+  const res = await fetch(
+    `${API_BASE}/api/v1/discharge-coordination/records${query ? `?${query}` : ''}`,
+  );
+
+  if (!res.ok) throw new Error(`Failed to fetch discharge records: ${res.status}`);
+
+  const json = await res.json();
+  return json.data;
+}
 // ─── DISCHARGE COORDINATION — STEP 4 ─────────────────────────────────────────
 //
 // Create a new discharge record for a patient.
