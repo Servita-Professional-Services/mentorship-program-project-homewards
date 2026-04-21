@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import type { Patient } from '@health-wards/shared';
 import { Input } from '../components/Input/Input';
 import { NumberInput } from '../components/NumberInput/NumberInput';
@@ -9,6 +8,7 @@ import { Button } from '../components/Button/Button';
 import { Select } from '../components/Select/Select';
 import { getPatients } from '../services/patients';
 import { createDischargeRecord } from '../services/dischargeRecords';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 type FormErrors = Partial<
   Record<'patientId' | 'preferredDateOfDischarge' | 'dateOfBloodwork' | 'dischargeReason', string>
@@ -34,10 +34,11 @@ function FormSection({ title, children }: { title: string; children: React.React
 
 export function DischargeRecords() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   // ── Patient selection ──────────────────────────────────────────────────────
   const [patients, setPatients] = useState<Patient[]>([]);
-  const [selectedPatientId, setSelectedPatientId] = useState('');
+  const [selectedPatientId, setSelectedPatientId] = useState(searchParams.get('patientId') ?? '');
   const selectedPatient = patients.find((p) => p.id === selectedPatientId) ?? null;
 
   // Populated once STEP 3 (getPatients) is implemented
@@ -88,6 +89,13 @@ export function DischargeRecords() {
 
     // your code here
 
+    if (!preferredDateOfDischarge) {
+      errs.preferredDateOfDischarge = 'Please select a date';
+    }
+
+    if (!dischargeReason) {
+      errs.dischargeReason = 'Please provide a reason for discharge';
+    }
     return errs;
   }
 
@@ -193,12 +201,45 @@ export function DischargeRecords() {
                     setErrors((prev) => ({ ...prev, preferredDateOfDischarge: undefined }));
                   }}
                 />
-                {/* TODO - Date of bloodwork */}
+                {
+                  <DatePickerInput
+                    id="dateOfBloodwork"
+                    label="Date of bloodwork"
+                    selected={dateOfBloodwork}
+                    error={errors.dateOfBloodwork}
+                    onChange={(date) => {
+                      setDateOfBloodwork(date);
+                      setErrors((prev) => ({ ...prev, dateOfBloodwork: undefined }));
+                    }}
+                  />
+                }
 
-                <div className="mt-4">{/* TODO - Discharge Reason */}</div>
+                <div className="mt-4">
+                  {
+                    <TextArea
+                      id="dischargeReason"
+                      label="Discharge reason"
+                      value={dischargeReason}
+                      error={errors.dischargeReason}
+                      onChange={(e) => {
+                        setDischargeReason(e.target.value);
+                        setErrors((prev) => ({ ...prev, dischargeReason: undefined }));
+                      }}
+                    />
+                  }
+                </div>
 
                 <div className="mt-4 flex items-center gap-3">
-                  {/* TODO - Checkbox for support plan */}
+                  <input
+                    id="supportPlanNeeded"
+                    type="checkbox"
+                    checked={supportPlanNeeded}
+                    onChange={(e) => setSupportPlanNeeded(e.target.checked)}
+                    className="h-4 w-4 rounded border-surface-border"
+                  />
+                  <label htmlFor="supportPlanNeeded" className="text-sm text-text-primary">
+                    Support plan needed
+                  </label>
                 </div>
               </div>
             </FormSection>

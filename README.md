@@ -6,7 +6,7 @@ Engineering mentorship skeleton for **HomeWard** — a digital platform commissi
 >
 > **Read the brief:** [`docs/brief.md`](./docs/brief.md) — the client requirements every challenge maps to.
 
-This codebase is intentionally incomplete. It runs out of the box, but has clearly signposted gaps for software engineers, data engineers, architects, and product people to work through.
+This codebase is intentionally incomplete. It runs out of the box, but has clearly signposted gaps for software engineers, data engineers, architects, and product people to work through. We visited this repo on our first day.
 
 ---
 
